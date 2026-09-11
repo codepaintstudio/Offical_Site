@@ -16,9 +16,9 @@
 
 ## Verification
 
-- `pnpm lint`
-- `pnpm typecheck`
-- `pnpm build`
+- `bun run lint`
+- `bun run typecheck`
+- `bun run build`
 - `go test ./...`
 - API smoke test: `/healthz`、公开岗位接口和未认证 workspace 访问
 - `git diff --check`
