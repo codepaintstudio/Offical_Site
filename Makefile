@@ -1,10 +1,10 @@
 .PHONY: dev-public dev-admin api worker migrate infra
 
 dev-public:
-	pnpm dev:public
+	bun run dev:public
 
 dev-admin:
-	pnpm dev:admin
+	bun run dev:admin
 
 api:
 	cd backend && go run ./cmd/api
