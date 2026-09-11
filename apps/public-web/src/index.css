@@ -1,37 +1,214 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  --font-grot: "Space Grotesk", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
-  --font-mono2: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-sans: "MiSans", "HarmonyOS Sans SC", "PingFang SC", "Inter", "Helvetica Neue", Arial, system-ui, -apple-system, sans-serif;
+  --font-mono2: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Core palette — crisp, high contrast, authoritative */
+  --color-ink: #0A0A0A;
+  --color-bone: #F4F4EE;
+  --color-paper: #FFFFFF;
+  --color-signal: #FFD900;
+  --color-acid: #B8FF27;
+  --color-pine: #173D22;
+  --color-ash: #A7A7A0;
+
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @layer base {
+  :root {
+    --safe-x: clamp(24px, 5vw, 88px);
+    --max-w: 1440px;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
   body {
     margin: 0;
-    background: #fffffc;
-    color: #111111;
+    background-color: var(--color-bone);
+    color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
-  * { box-sizing: border-box; }
-  ::selection { background: #111111; color: #fffffc; }
-  :focus-visible { outline: 2px solid #111111; outline-offset: 3px; }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: var(--color-signal);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+  }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
-      scroll-behavior: auto !important;
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
+      transition-duration: 150ms !important;
+      scroll-behavior: auto !important;
     }
   }
 }
 
-@utility font-grot {
-  font-family: var(--font-grot);
-}
 @utility font-mono2 {
   font-family: var(--font-mono2);
+}
+
+/* ---------- Typography scale ---------- */
+
+.t-hero {
+  font-size: clamp(40px, 6.8vw, 108px);
+  line-height: 1.08;
+  font-weight: 900;
+  letter-spacing: -0.035em;
+}
+
+.t-scene {
+  font-size: clamp(38px, 5.2vw, 76px);
+  line-height: 1.12;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.t-sub {
+  font-size: clamp(24px, 2.8vw, 42px);
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.t-project {
+  font-size: clamp(40px, 6vw, 96px);
+  line-height: 1.05;
+  font-weight: 900;
+  letter-spacing: -0.035em;
+}
+
+.t-giant {
+  font-size: clamp(110px, 18vw, 260px);
+  line-height: 0.95;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+.t-body {
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.t-aux {
+  font-size: 13px;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+}
+
+.t-menu {
+  font-size: clamp(36px, min(7.5vw, 8.5vh), 92px);
+  line-height: 1.05;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+/* ---------- Layout & Alignment Containers ---------- */
+
+.app-container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--safe-x);
+  padding-right: var(--safe-x);
+}
+
+.safe-x {
+  padding-left: var(--safe-x);
+  padding-right: var(--safe-x);
+}
+
+/* Crisp formal cards with reliable boundaries */
+.formal-card {
+  border: 1px solid rgba(10, 10, 10, 0.15);
+  background-color: #FFFFFF;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.formal-card:hover {
+  border-color: rgba(10, 10, 10, 0.65);
+  box-shadow: 0 12px 32px -8px rgba(10, 10, 10, 0.08);
+}
+
+/* Clean technical tags */
+.tech-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono2);
+  font-size: 12px;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid rgba(10, 10, 10, 0.15);
+  background-color: rgba(10, 10, 10, 0.03);
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Shared primitives ---------- */
+
+.mask-wrap,
+.mask-char {
+  --mask-bleed: 0.18em;
+  overflow: hidden;
+  padding-bottom: var(--mask-bleed);
+  margin-bottom: calc(-1 * var(--mask-bleed));
+}
+
+.mask-wrap {
+  display: block;
+}
+
+.mask-char {
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.mask-inner {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* editorial index row: hover sweeps signal yellow */
+.row-sweep {
+  position: relative;
+  isolation: isolate;
+}
+.row-sweep::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-signal);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s var(--ease-smooth);
+  z-index: -1;
+}
+.row-sweep:hover::before,
+.row-sweep[data-active="true"]::before {
+  transform: scaleX(1);
+}
+
+/* hide native cursor when custom cursor is live */
+html.has-cursor,
+html.has-cursor a,
+html.has-cursor button,
+html.has-cursor [role="button"] {
+  cursor: none;
 }
