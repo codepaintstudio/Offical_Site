@@ -1,14 +1,14 @@
 {
-  "name": "codepaint-resume",
+  "name": "codepaint-official-site",
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dev": "bun run --filter @codepaint/public-web dev",
     "dev:public": "bun run --filter @codepaint/public-web dev",
-    "dev:admin": "bun run --filter @codepaint/admin-web dev",
-    "dev": "bun run --filter \"@codepaint/*\" dev",
-    "build": "bun run --filter \"@codepaint/*\" build",
-    "typecheck": "bun run --filter \"@codepaint/*\" typecheck",
-    "lint": "bun run --filter \"@codepaint/*\" lint"
+    "build": "bun run --filter @codepaint/public-web build",
+    "typecheck": "bun run --filter @codepaint/public-web typecheck",
+    "lint": "bun run --filter @codepaint/public-web lint",
+    "preview": "bun run --filter @codepaint/public-web preview"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
@@ -16,7 +16,6 @@
     "typescript": "^5.7.0"
   },
   "workspaces": [
-    "apps/*",
-    "packages/*"
+    "apps/public-web"
   ]
 }

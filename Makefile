@@ -1,19 +1,13 @@
-.PHONY: dev-public dev-admin api worker migrate infra
+.PHONY: dev dev-public build typecheck preview
 
-dev-public:
-	bun run dev:public
+dev dev-public:
+	bun run dev
 
-dev-admin:
-	bun run dev:admin
+build:
+	bun run build
 
-api:
-	cd backend && go run ./cmd/api
+typecheck:
+	bun run typecheck
 
-worker:
-	cd backend && go run ./cmd/worker
-
-migrate:
-	cd backend && go run ./cmd/migrate
-
-infra:
-	docker compose -f deploy/compose/docker-compose.yml up -d
+preview:
+	bun run preview

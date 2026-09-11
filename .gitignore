@@ -34,11 +34,6 @@ build/
 .vite/
 *.tsbuildinfo
 
-# Go
-*.test
-*.out
-bin/
-
 # Playwright
 test-results/
 playwright-report/
@@ -59,5 +54,3 @@ coverage/
 .temp/
 tmp/
 
-# Local infrastructure data
-deploy/compose/data/
