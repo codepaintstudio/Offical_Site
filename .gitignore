@@ -61,6 +61,3 @@ tmp/
 
 # Local infrastructure data
 deploy/compose/data/
-
-# Documentation is not versioned yet.
-docs/*
