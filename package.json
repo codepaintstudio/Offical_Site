@@ -15,9 +15,6 @@
     "@types/react-dom": "^19.0.0",
     "typescript": "^5.7.0"
   },
-  "dependencies": {
-    "lucide-react": "^1.38.0"
-  },
   "workspaces": [
     "apps/*",
     "packages/*"
