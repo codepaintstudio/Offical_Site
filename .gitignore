@@ -2,10 +2,20 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+Thumbs.db
 .idea/
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
+*.swp
+*.swo
+*~
+
+# Local tooling
+.workbuddy/
+.zcode/
+.mimosa/
+.playwright-cli/
 
 # Environment and secrets
 .env
@@ -13,9 +23,12 @@
 !.env.example
 *.local
 
-# Node / pnpm / Vite
+# Node / package managers
 node_modules/
 .pnpm-store/
+.bun/
+
+# Build outputs
 dist/
 build/
 .vite/
@@ -26,10 +39,28 @@ build/
 *.out
 bin/
 
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Test / tooling caches
+coverage/
+.cache/
+.temp/
+tmp/
+
 # Local infrastructure data
 deploy/compose/data/
-*.log
 
-# Keep product and engineering documentation versioned.
-node_modules/
+# Documentation is not versioned yet.
 docs/*
